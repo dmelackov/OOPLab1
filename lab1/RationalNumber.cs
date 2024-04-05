@@ -31,6 +31,7 @@ public class RationalNumber
         {
             throw new DivideByZeroException();
         }
+        this.Simplize();
     }
 
     private void Simplize() {
@@ -43,11 +44,11 @@ public class RationalNumber
     }
 
     public static RationalNumber operator + (RationalNumber a, RationalNumber b) {
-        return new RationalNumber(a._nominator * b._denominator + b._nominator * a._denominator, a._denominator*b._denominator);
+        return new RationalNumber(a.Nominator * b.Denominator + b.Nominator * a.Denominator, a.Denominator*b.Denominator);
     }
 
     public static RationalNumber operator - (RationalNumber a){
-        return new RationalNumber(-a._nominator, a._denominator);
+        return new RationalNumber(-a.Nominator, a.Denominator);
     }
 
     public static RationalNumber operator - (RationalNumber a, RationalNumber b){
@@ -56,9 +57,7 @@ public class RationalNumber
 
     public static bool operator ==(RationalNumber a, RationalNumber b)
     {
-        a.Simplize();
-        b.Simplize();
-        return a._nominator == b._nominator && a._denominator == b._denominator;
+        return a.Nominator == b.Nominator && a.Denominator == b.Denominator;
     }
 
     public static bool operator !=(RationalNumber a, RationalNumber b)
@@ -68,28 +67,25 @@ public class RationalNumber
 
     public static bool operator > (RationalNumber a, RationalNumber b)
     {
-        int nok = MyMath.NOK(a._denominator, b._denominator);
-        return a._nominator * (nok / b._denominator) > b._nominator * (nok / a._denominator);
+        return a.Nominator *  b.Denominator > b.Nominator * a.Denominator;
     }
 
     public static bool operator < (RationalNumber a, RationalNumber b)
     {
-        int nok = MyMath.NOK(a._denominator, b._denominator);
-        return a._nominator * (nok / b._denominator) < b._nominator * (nok / a._denominator);
+        return a.Nominator * b.Denominator < b.Nominator * a.Denominator;
     }
 
     public override string ToString()
     {
-        this.Simplize();
-        if(this._nominator == 0) {
+        if(this.Nominator == 0) {
             return "0";
         }
-        if (this._denominator == 0) {
+        if (this.Denominator == 0) {
             return "Uncorrect number"; 
         }
-        if (this._denominator == 1){
-            return $"{this._nominator}";
+        if (this.Denominator == 1){
+            return $"{this.Nominator}";
         }
-        return $"{this._nominator}/{this._denominator}";
+        return $"{this.Nominator}/{this.Denominator}";
     }
 }
