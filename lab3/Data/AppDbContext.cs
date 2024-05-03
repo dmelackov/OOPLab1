@@ -44,5 +44,11 @@ namespace lab3.Data
             .IsRequired();
 
         }
+        public DbSet<lab3.Models.Profile> Profile { get; set; } = default!;
+        public DbSet<lab3.Models.Perm> Perm { get; set; } = default!;
+        public DbSet<lab3.Models.Role> Role { get; set; } = default!;
+        public DbSet<lab3.Models.Workspace> Workspace { get; set; } = default!;
+        public DbSet<lab3.Models.WorkspaceProfile> WorkspaceProfile { get; set; } = default!;
+        public DbSet<lab3.Models.RolePerm> RolePerm { get; set; } = default!;
     }
 }

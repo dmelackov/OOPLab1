@@ -1,11 +1,16 @@
-﻿namespace lab3.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace lab3.Models
 {
     public class RolePerm
     {
-        public int RoleId { get; set; }
-        public int PermId { get; set; }
+        public int PermsId { get; set; }
+        public int RolesId { get; set; }
 
+        [ForeignKey("RolesId")]
         public Role Role { get; set; } = null!;
+
+        [ForeignKey("PermsId")]
         public Perm Perm { get; set; } = null!;
     }
 }
